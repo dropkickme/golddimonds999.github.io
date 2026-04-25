@@ -4,7 +4,6 @@ body {
   color: white;
   font-family: 'Montserrat', Arial, sans-serif;
   text-align: center;
-  -webkit-tap-highlight-color: transparent;
 }
 
 header {
@@ -72,6 +71,17 @@ h1 {
 .game-title {
   padding: 10px;
   font-size: 16px;
+}
+
+/* EMPTY TILE */
+.game-card.empty {
+  background: #111;
+  opacity: 0.5;
+  cursor: default;
+}
+
+.game-card.empty:hover {
+  transform: none;
 }
 
 /* POPUP */
