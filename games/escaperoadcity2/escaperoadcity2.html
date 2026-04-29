@@ -14,13 +14,18 @@
       padding: 0;
       margin: 0;
     }
-    #gameContainer { position: absolute; }
-    #gameContainer canvas { position: absolute; }
+    #gameContainer {
+      position: absolute;
+    }
+    #gameContainer canvas {
+      position: absolute;
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- KEEP SDK FILE (some builds depend on it), but we neutralize tracking -->
   <script src="gmsoftsdk_v5.js"></script>
 
   <div id="gameContainer" style="display:none;">
@@ -31,25 +36,12 @@
     loading... <span id="pct">0%</span>
   </div>
 
+  <!-- Stub analytics (prevents errors if game calls them) -->
   <script>
-    function firebaseLogEvent(e){}
-    function firebaseLogEventParameter(e,p){}
-    function firebaseSetUserProperties(p){}
+    function firebaseLogEvent() {}
+    function firebaseLogEventParameter() {}
+    function firebaseSetUserProperties() {}
   </script>
-
-  <!-- ✅ FIXED (was broken before) -->
-  <script>
-    window.fileMergerConfig = {
-      files: [
-        { name: 'escape-road-city-2-v25022604.data.unityweb', parts: 2 },
-      ],
-      basePath: 'Build/',
-      debug: true
-    };
-  </script>
-
-  <!-- ✅ REQUIRED for split files -->
-  <script src="https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/merge.js"></script>
 
   <script>
     var canvas = document.getElementById("unity-canvas");
@@ -64,12 +56,7 @@
       streamingAssetsUrl: "StreamingAssets",
       companyName: "azgames.io",
       productName: "Tung Sahur Horror",
-      productVersion: "25051505",
-      pubId: "",
-      gameId: "tung-sahur-horror",
-      enableMoreGame: "yes",
-      enablePromotion: true,
-      eventLog: false
+      productVersion: "25051505"
     };
 
     function onResize() {
@@ -86,8 +73,8 @@
       container.style.left = Math.floor((window.innerWidth  - w) / 2) + "px";
     }
 
-    onResize();
     window.addEventListener("resize", onResize);
+    onResize();
 
     var script = document.createElement("script");
     script.src = buildUrl + "/escape-road-city-2-v25022604.loader.js";
@@ -97,12 +84,11 @@
         document.getElementById("pct").innerText = Math.round(progress * 100) + "%";
       }).then(function(instance) {
         window.unityInstance = instance;
-        setTimeout(function() {
-          loadingBar.style.display = "none";
-          container.style.display = "block";
-        }, 2000);
-      }).catch(function(msg) {
-        alert(msg);
+        loadingBar.style.display = "none";
+        container.style.display = "block";
+      }).catch(function(err) {
+        console.error(err);
+        alert("Game failed to load");
       });
     };
 
