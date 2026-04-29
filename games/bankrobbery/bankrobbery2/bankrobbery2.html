@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>BankRobbery2</title>
+
+    <!-- Unity styles -->
+    <link href="https://cdn.jsdelivr.net/gh/linkd1/g@e079e474647ea113968cdc140ca97380be6409af/BANKROBBERY2/TemplateData/style.css" rel="stylesheet">
+
+    <style>
+        body { margin: 0; background: #000; }
+        #unity-container { width: 100%; height: 100vh; }
+        #unity-canvas { width: 100%; height: 100%; }
+    </style>
+</head>
+
+<body>
+    <div id="unity-container">
+        <canvas id="unity-canvas"></canvas>
+    </div>
+
+    <div id="loading-cover">
+        <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const buildUrl = "https://cdn.jsdelivr.net/gh/linkd1/g@e079e474647ea113968cdc140ca97380be6409af/BANKROBBERY2/Build";
+        const loaderUrl = buildUrl + "/BankRobbery2.loader.js";
+
+        const canvas = document.querySelector("#unity-canvas");
+        const loadingBar = document.querySelector("#unity-progress-bar-full");
+
+        const config = {
+            dataUrl: buildUrl + "/BankRobbery2.data.unityweb",
+            frameworkUrl: buildUrl + "/BankRobbery2.framework.js.unityweb",
+            codeUrl: buildUrl + "/BankRobbery2.wasm.unityweb",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "JustAlien",
+            productName: "BankRobbery2",
+            productVersion: "1.0"
+        };
+
+        const script = document.createElement("script");
+        script.src = loaderUrl;
+
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                loadingBar.style.width = (progress * 100) + "%";
+            }).then(() => {
+                document.querySelector("#loading-cover").style.display = "none";
+            }).catch((message) => {
+                alert(message);
+            });
+        };
+
+        document.body.appendChild(script);
+    </script>
+</body>
+</html>
