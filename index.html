@@ -75,17 +75,6 @@
     Join the Carson Minecraft server!
   </a>
 
-  <!-- INFO POPUP (still kept since you were using it) -->
-  <div class="info-overlay" id="infoPopup">
-    <div class="info-box">
-      <div class="info-close" id="infoClose">✖</div>
-      <div class="info-title">New Announcement!</div>
-      <div class="info-text">
-        I am working on a new website that is easier to get to and will work a lot better. It will include new games and improvements.
-      </div>
-    </div>
-  </div>
-
   <header>
     <h1>Carson SMP Games</h1>
     <h2>VOTE DARYL FOR PRESIDENT!!!</h2>
@@ -215,11 +204,6 @@
   </div>
 
   <script>
-    const infoPopup=document.getElementById("infoPopup");
-    document.getElementById("infoClose").onclick=()=>{
-      infoPopup.style.display="none";
-    };
-
     document.getElementById("gameGrid").addEventListener("click",e=>{
       const card=e.target.closest(".game-card");
       if(!card||!card.dataset.url)return;
