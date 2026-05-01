@@ -75,12 +75,23 @@
     Join the Carson Minecraft server!
   </a>
 
+  <!-- INFO POPUP (FIXED MISSING ELEMENT) -->
+  <div class="info-overlay" id="infoPopup">
+    <div class="info-box">
+      <div class="info-close" id="infoClose">✖</div>
+      <div class="info-title">New Announcement!</div>
+      <div class="info-text">
+        I am working on a new website that is easier to get to and will work a lot better. It will include new games and improvements.
+      </div>
+    </div>
+  </div>
+
   <header>
     <h1>Carson SMP Games</h1>
-    <h1>VOTE DARYL FOR PRESIDENT!!!</h1>
+    <h2>VOTE DARYL FOR PRESIDENT!!!</h2>
     <div class="subtitle">
       Updates daily! Suggest games
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe3_sbc6CRZuYDlBWvWJkabXiVyQ70CF6iRISkzowsqB4AxSQ/viewform?usp=sharing&ouid=105447127997926674664" target="_blank">here</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSe3_sbc6CRZuYDlBWvWjKabXiVyQ70CF6iRISkzowsqB4AxSQ/viewform?usp=sharing&ouid=105447127997926674664" target="_blank">here</a>
     </div>
   </header>
 
@@ -203,14 +214,6 @@
 
     <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
     <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
-    <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
-    <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
-    <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
-    <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
-    <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
-    <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
-    <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
-    <div class="game-card empty"><div class="game-title">Game in progress!</div></div>
 
   </div>
 
@@ -243,8 +246,11 @@
 
     document.getElementById("fsBtn").onclick=()=>{
       const el=document.querySelector(".popup-content");
-      if(!document.fullscreenElement&&el.requestFullscreen)el.requestFullscreen().catch(()=>{});
-      else document.exitFullscreen();
+      if(!document.fullscreenElement && el.requestFullscreen){
+        el.requestFullscreen().catch(()=>{});
+      } else {
+        document.exitFullscreen?.();
+      }
     };
   </script>
 
